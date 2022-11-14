@@ -9,7 +9,7 @@ import (
 
 func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintln(w, "Hello, world!", r.URL.Path[1:])
+		fmt.Fprintln(w, "Bye world", r.URL.Path[1:])
 	})
 	http.HandleFunc("/login", githubLoginHandler)
 	log.Println("Listening on port 8080")
