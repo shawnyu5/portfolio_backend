@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -12,7 +13,11 @@ func main() {
 	})
 	http.HandleFunc("/login", githubLoginHandler)
 	log.Println("Listening on port 8080")
-	http.ListenAndServe(":8080", nil)
+	port := ":8080"
+	if os.Getenv("PORT") != "" {
+		port = ":" + os.Getenv("PORT")
+	}
+	http.ListenAndServe(port, nil)
 }
 
 func githubLoginHandler(w http.ResponseWriter, r *http.Request) {
